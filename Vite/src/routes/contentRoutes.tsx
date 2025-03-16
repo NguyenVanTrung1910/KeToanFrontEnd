@@ -46,6 +46,19 @@ const presentation: RouteProps[] = [
 	{
 		path: pageLayoutTypesPagesMenu.asideTypes.subMenu.minimizeAside.path,
 		element: <PAGE_LAYOUTS.MINIMIZE_ASIDE />,
+
+	},
+	{
+		path: demoPagesMenu.page404.path,
+		element: <AUTH.PAGE_404 />,
+	},
+	{
+		path: demoPagesMenu.login.path,
+		element: <Login />,
+	},
+	{
+		path: demoPagesMenu.signUp.path,
+		element: <Login isSignUp />,
 	},
 ];
 

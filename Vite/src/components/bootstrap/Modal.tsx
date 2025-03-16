@@ -1,4 +1,5 @@
 import React, {
+	// eslint-disable-next-line prettier/prettier
 	FC,
 	forwardRef,
 	HTMLAttributes,
@@ -217,4 +218,5 @@ const Modal: FC<IModalProps> = ({
 	);
 };
 
+// eslint-disable-next-line prettier/prettier
 export default Modal;

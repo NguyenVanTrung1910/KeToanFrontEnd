@@ -16,6 +16,7 @@ import SERVICES, { IServiceProps } from './serviceDummyData';
 
 import User7Landing from '../../assets/img/wanna/landing1.png';
 import { TColor } from '../../type/color-type';
+import api from "../../Api/api";
 
 export interface IUserProps {
 	id: string;
@@ -140,6 +141,17 @@ const sam: IUserProps = {
 	password: '@ABC123',
 };
 
+
+
+
+
+const CurrentUser = {
+
+}
+
+
+
+
 const USERS: { [key: string]: IUserProps } = {
 	JOHN: john,
 	GRACE: grace,
@@ -158,6 +170,17 @@ export function getUserDataWithUsername(username: string): IUserProps {
 export function getUserDataWithId(id?: string): IUserProps {
 	// @ts-ignore
 	return USERS[Object.keys(USERS).filter((f) => USERS[f].id.toString() === id.toString())];
+}
+
+export async function isValidUser(username: string, password: string): Promise<boolean> {
+	try {
+		const response = await api.post("/auth/login", { email: username, matkhau: password });
+		// Nếu request thành công, trả về true
+		return response.status === 200;
+	} catch (error) {
+		// Nếu request lỗi (401, 500,...), trả về false
+		return false;
+	}
 }
 
 export default USERS;

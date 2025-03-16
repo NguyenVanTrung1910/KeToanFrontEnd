@@ -28,22 +28,28 @@ const DashboardPage = () => {
 				localStorage.setItem('tourModalStarted', 'shown');
 			}, 7000);
 		}
-		return () => {};
+		return () => { };
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	//const { themeStatus } = useDarkMode();
 
 	//const [activeTab, setActiveTab] = useState<TTabs>(TABS.YEARLY);
-	const login = async (username:string, password:string) => {
-		try {
-		  await api.post("/auth/login", { username, password });
-		  alert("Đăng nhập thành công!");
-		} catch (error) {
-		  alert("Đăng nhập thất bại!");
-		}
-	  };
-	 login("Trung@gmail.com","1") 
+
+
+	// function isValidUser() {
+	// 	try {
+	// 		const response = api.get("/menu/GetMenu");
+	// 		// Nếu request thành công, trả về true
+	// 		console.log("ok");
+	// 	} catch (error) {
+	// 		console.log("no");
+	// 	}
+	// }
+	// isValidUser()
+
+
+
 	return (
 		<PageWrapper title={demoPagesMenu.sales.subMenu.dashboard.text}>
 			<Page container='fluid'>

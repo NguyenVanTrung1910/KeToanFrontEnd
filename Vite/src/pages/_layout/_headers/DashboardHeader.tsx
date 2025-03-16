@@ -6,6 +6,7 @@ import Navigation from '../../../layout/Navigation/Navigation';
 import CommonHeaderRight from './CommonHeaderRight';
 import useDeviceScreen from '../../../hooks/useDeviceScreen';
 import ThemeContext from '../../../contexts/themeContext';
+import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 
 const DashboardHeader = () => {
 	const { width } = useDeviceScreen();

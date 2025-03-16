@@ -37,13 +37,13 @@ const DefaultAside = () => {
 				<Brand asideStatus={asideStatus} setAsideStatus={setAsideStatus} />
 			</AsideHead>
 			<AsideBody>
-				
+
 				<>
 					<Navigation menu={dashboardPagesMenu} id='aside-dashboard' />
-					<NavigationLine />
-					<Navigation menu={pageLayoutTypesPagesMenu} id='aside-menu' />
+					{/* <NavigationLine />
+					<Navigation menu={pageLayoutTypesPagesMenu} id='aside-menu' /> */}
 				</>
-				
+
 			</AsideBody>
 			<AsideFoot>
 				<nav aria-label='aside-bottom-menu'>

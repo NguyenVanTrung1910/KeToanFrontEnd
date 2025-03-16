@@ -16,10 +16,20 @@ import { getOS } from '../helpers/helpers';
 import steps, { styles } from '../steps';
 import AsideRoutes from '../layout/Aside/AsideRoutes';
 import { ToastCloseButton } from '../components/bootstrap/Toasts';
+import { useAliveController } from "react-activation";
+const useLimitedCache = (maxCacheSize = 5) => {
+	const { getCachingNodes, drop } = useAliveController();
 
+	useEffect(() => {
+		const cachedNodes = getCachingNodes();
+		if (cachedNodes.length > maxCacheSize) {
+			drop(cachedNodes[0].id); // Xóa cache của component cũ nhất
+		}
+	}, [getCachingNodes, drop, maxCacheSize]);
+};
 const App = () => {
 	getOS();
-
+	useLimitedCache(10);
 	dayjs.extend(localizedFormat);
 	dayjs.extend(relativeTime);
 

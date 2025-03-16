@@ -16,6 +16,7 @@ export const AuthContextProvider: FC<IAuthContextProviderProps> = ({ children })
 	const [userData, setUserData] = useState<Partial<IUserProps>>({});
 
 	useEffect(() => {
+		//localStorage.setItem('facit_authUsername', user);
 		localStorage.setItem('facit_authUsername', user);
 	}, [user]);
 

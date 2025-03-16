@@ -11,7 +11,7 @@ import Button from '../../../components/bootstrap/Button';
 import Logo from '../../../components/Logo';
 import useDarkMode from '../../../hooks/useDarkMode';
 import AuthContext from '../../../contexts/authContext';
-import USERS, { getUserDataWithUsername } from '../../../common/data/userDummyData';
+import USERS, { getUserDataWithUsername, isValidUser } from '../../../common/data/userDummyData';
 import Spinner from '../../../components/bootstrap/Spinner';
 import Alert from '../../../components/bootstrap/Alert';
 //import api from "../../../Api/api";
@@ -48,13 +48,13 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 
 	const navigate = useNavigate();
 	const handleOnClick = useCallback(() => navigate('/'), [navigate]);
-
 	const usernameCheck = (username: string) => {
-		return !!getUserDataWithUsername(username);
+		return true;
 	};
 
 	const passwordCheck = (username: string, password: string) => {
-		return getUserDataWithUsername(username).password === password;
+		return isValidUser(username, password);
+		//return getUserDataWithUsername(username).password === password;
 	};
 
 	const formik = useFormik({
@@ -77,11 +77,12 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 			return errors;
 		},
 		validateOnChange: false,
-		onSubmit: (values) => {
+		onSubmit: async (values) => {
 			if (usernameCheck(values.loginUsername)) {
-				if (passwordCheck(values.loginUsername, values.loginPassword)) {
+				if (await passwordCheck(values.loginUsername, values.loginPassword)) {
 					if (setUser) {
-						setUser(values.loginUsername);
+						//setUser(values.loginUsername);
+						setUser("john");
 					}
 
 					handleOnClick();
@@ -97,9 +98,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 		setIsLoading(true);
 		setTimeout(() => {
 			if (
-				!Object.keys(USERS).find(
-					(f) => USERS[f].username.toString() === formik.values.loginUsername,
-				)
+				!usernameCheck(formik.values.loginUsername)
 			) {
 				formik.setFieldError('loginUsername', 'No such user found in the system.');
 			} else {
@@ -170,7 +169,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 
 								<LoginHeader isNewUser={singUpStatus} />
 
-								<Alert isLight icon='Lock' isDismissible>
+								{/* <Alert isLight icon='Lock' isDismissible>
 									<div className='row'>
 										<div className='col-12'>
 											<strong>Username:</strong> {USERS.JOHN.username}
@@ -179,7 +178,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 											<strong>Password:</strong> {USERS.JOHN.password}
 										</div>
 									</div>
-								</Alert>
+								</Alert> */}
 								<form className='row g-4'>
 									{singUpStatus ? (
 										<>
