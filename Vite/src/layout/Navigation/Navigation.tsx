@@ -51,28 +51,28 @@ interface INavigationProps {
 }
 const Navigation = forwardRef<HTMLElement, INavigationProps>(
 	({ menu, horizontal, id, className, ...props }, ref) => {
-		const [activeItem, setActiveItem] = useState(undefined);
+		//const [activeItem, setActiveItem] = useState(undefined);
 
 		const { t } = useTranslation('menu');
 
 		function fillMenu(
 			data:
 				| {
+					id?: string | number;
+					text?: string;
+					path?: string;
+					icon?: TIcons;
+					isDisable?: boolean;
+					subMenu?:
+					| {
 						id?: string | number;
 						text?: string;
 						path?: string;
 						icon?: TIcons;
 						isDisable?: boolean;
-						subMenu?:
-							| {
-									id?: string | number;
-									text?: string;
-									path?: string;
-									icon?: TIcons;
-									isDisable?: boolean;
-							  }[]
-							| undefined;
-				  }[]
+					}[]
+					| undefined;
+				}[]
 				| any,
 			parentId: string,
 			rootId: string,
@@ -90,8 +90,8 @@ const Navigation = forwardRef<HTMLElement, INavigationProps>(
 						to={`${data[item].path}`}
 						parentId={parentId}
 						isHorizontal={isHorizontal}
-						setActiveItem={setActiveItem}
-						activeItem={activeItem}
+						// setActiveItem={setActiveItem}
+						// activeItem={activeItem}
 						notification={data[item].notification}
 						hide={data[item].hide}>
 						{!!data[item].subMenu &&

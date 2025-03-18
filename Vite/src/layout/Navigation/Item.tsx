@@ -26,8 +26,8 @@ interface IItemProps {
 	notification?: boolean | string;
 	isMore?: boolean;
 	hide?: boolean;
-	activeItem?: string;
-	setActiveItem?(...args: unknown[]): unknown;
+	// activeItem?: string;
+	// setActiveItem?(...args: unknown[]): unknown;
 }
 
 const Item: FC<IItemProps> = ({
@@ -75,13 +75,24 @@ const Item: FC<IItemProps> = ({
 			return updatedTabs;
 		});
 	};
-	const ACTIVE = props.activeItem === id;
+
+	// const ACTIVE = props.activeItem === id;
+	// const handleClick = () => {
+	// 	if (typeof props.setActiveItem !== 'undefined') {
+	// 		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+	// 		// ACTIVE ? props.setActiveItem(null) : props.setActiveItem(id);
+	// 		props.activeItem === null ? props.setActiveItem(id) : props.setActiveItem(null);
+	// 	}
+	// };
+
+	const [activeItem, setActiveItem] = useState<string | null | undefined>(null);
+	const ACTIVE = activeItem === id;
+
 	const handleClick = () => {
-		if (typeof props.setActiveItem !== 'undefined') {
-			// eslint-disable-next-line @typescript-eslint/no-unused-expressions
-			ACTIVE ? props.setActiveItem(null) : props.setActiveItem(id);
-		}
+		setActiveItem((prev: string | null | undefined) => (prev === id ? null : id));
 	};
+
+
 
 	const linkHandleClick = () => {
 		// For Mobile Design
@@ -289,8 +300,8 @@ const Item: FC<IItemProps> = ({
 			>
 				{WITHOUT_CHILD}
 				{isHorizontal && isHovered && (
-					<span onClick={() => removeTab(id || "no")} 
-					style={{ color: "red", cursor: "pointer", marginLeft: "-12px",zIndex:5 }}
+					<span onClick={() => removeTab(id || "no")}
+						style={{ color: "red", cursor: "pointer", marginLeft: "-12px", zIndex: 5 }}
 					>X</span>
 				)}
 			</li>

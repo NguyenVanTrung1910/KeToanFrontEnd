@@ -39,7 +39,7 @@ const DefaultAside = () => {
 			<AsideBody>
 
 				<>
-					<Navigation menu={dashboardPagesMenu} id='aside-dashboard' />
+					<Navigation menu={demoPagesMenu} id='aside-dashboard' />
 					{/* <NavigationLine />
 					<Navigation menu={pageLayoutTypesPagesMenu} id='aside-menu' /> */}
 				</>
